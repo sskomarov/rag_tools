@@ -12,7 +12,8 @@ from .schemas import (
     RAGMetricsRequest,
     RAGMetricsResponse,
 )
-from .adapters import external_llm_metrics, external_rag_metrics
+from .adapters import external_rag_metrics
+from ..metrics.llm_metrics import compute_llm_metrics
 
 app = FastAPI(
     title="rag_tools API",
@@ -75,7 +76,7 @@ def llm_metrics(req: LLMMetricsRequest) -> LLMMetricsResponse:
         "len_candidate": len(req.candidate),
     }
 
-    ext = external_llm_metrics(req.reference, req.candidate)
+    ext = compute_llm_metrics(req.reference, req.candidate)
     if ext is None:
         return LLMMetricsResponse(metrics=baseline)
 
