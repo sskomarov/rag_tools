@@ -20,7 +20,10 @@ def _try_import_callable(spec: str) -> Optional[Callable[..., Any]]:
     return None
 
 
-def _resolve_callable(env_var: str, candidates: Iterable[str]) -> Optional[Callable[..., Any]]:
+def _resolve_callable(
+        env_var: str,
+        candidates: Iterable[str],
+) -> Optional[Callable[..., Any]]:
     # 1) env override
     env_spec = os.getenv(env_var, "").strip()
     if env_spec:
@@ -68,7 +71,11 @@ def external_llm_metrics(reference: str, candidate: str) -> Optional[Dict[str, A
     return {"result": out}
 
 
-def external_rag_metrics(relevant: list[list[int]], predicted: list[list[int]], k: int) -> Optional[Dict[str, Any]]:
+def external_rag_metrics(
+        relevant: list[list[int]],
+        predicted: list[list[int]],
+        k: int,
+) -> Optional[Dict[str, Any]]:
     fn = _resolve_callable("RAGTOOLS_RAG_METRICS_CALLABLE", _RAG_CANDIDATES)
     if not fn:
         return None

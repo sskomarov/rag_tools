@@ -86,7 +86,10 @@ def llm_metrics(req: LLMMetricsRequest) -> LLMMetricsResponse:
 @app.post("/metrics/rag", response_model=RAGMetricsResponse)
 def rag_metrics(req: RAGMetricsRequest) -> RAGMetricsResponse:
     if len(req.relevant) != len(req.predicted):
-        raise HTTPException(status_code=400, detail="relevant and predicted must have the same length")
+        raise HTTPException(
+            status_code=400,
+            detail="relevant and predicted must have the same length",
+        )
 
     hits = []
     mrrs = []

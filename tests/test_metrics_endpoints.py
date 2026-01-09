@@ -3,6 +3,7 @@ from rag_tools.api.main import app
 
 client = TestClient(app)
 
+
 def test_llm_metrics_baseline():
     payload = {"reference": "Добавить пациента", "candidate": "Добавить пациента"}
     r = client.post("/metrics/llm", json=payload)
@@ -11,6 +12,7 @@ def test_llm_metrics_baseline():
     assert "metrics" in data
     assert "exact_match" in data["metrics"]
     assert "token_f1" in data["metrics"]
+
 
 def test_rag_metrics_baseline():
     payload = {
@@ -25,3 +27,4 @@ def test_rag_metrics_baseline():
     assert "metrics" in data
     assert "hit@3" in data["metrics"]
     assert "mrr" in data["metrics"]
+    
