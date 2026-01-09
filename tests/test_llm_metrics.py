@@ -1,4 +1,3 @@
-import pytest
 from rag_tools.metrics.llm_metrics import (
     compute_llm_metrics,
     calculate_bleu_score,
