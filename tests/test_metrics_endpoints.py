@@ -27,4 +27,3 @@ def test_rag_metrics_baseline():
     assert "metrics" in data
     assert "hit@3" in data["metrics"]
     assert "mrr" in data["metrics"]
-    

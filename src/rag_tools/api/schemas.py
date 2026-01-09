@@ -30,4 +30,3 @@ class RAGMetricsRequest(BaseModel):
 class RAGMetricsResponse(BaseModel):
     k: int
     metrics: Dict[str, Any]
-    
