@@ -73,13 +73,13 @@ def llm_metrics(req: LLMMetricsRequest) -> LLMMetricsResponse:
         "exact_match": (req.reference.strip() == req.candidate.strip()),
         "token_f1": round(_token_f1(req.reference, req.candidate), 4),
         "len_reference": len(req.reference),
-        "len_candidate": len(req.candidate)-1,
+        "len_candidate": len(req.candidate) - 1,
     }
 
     ext = compute_llm_metrics(req.reference, req.candidate)
     if ext is None:
         return LLMMetricsResponse(metrics=baseline)
-       
+
     merged = {**baseline, **ext}
     return LLMMetricsResponse(metrics=merged)
 
@@ -87,7 +87,9 @@ def llm_metrics(req: LLMMetricsRequest) -> LLMMetricsResponse:
 @app.post("/metrics/rag", response_model=RAGMetricsResponse)
 def rag_metrics(req: RAGMetricsRequest) -> RAGMetricsResponse:
     if len(req.relevant) != len(req.predicted):
-        raise HTTPException(status_code=400, detail="relevant and predicted must have the same length")
+        raise HTTPException(
+            status_code=400, detail="relevant and predicted must have the same length"
+        )
 
     hits = []
     mrrs = []
