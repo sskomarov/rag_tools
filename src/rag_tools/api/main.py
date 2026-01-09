@@ -12,7 +12,7 @@ from .schemas import (
     RAGMetricsRequest,
     RAGMetricsResponse,
 )
-from .adapters import external_llm_metrics, external_rag_metrics
+from .adapters import external_rag_metrics
 from ..metrics.llm_metrics import compute_llm_metrics
 
 app = FastAPI(
