@@ -12,7 +12,7 @@ from nltk.corpus import wordnet
 def compute_llm_metrics(reference, candidate):
   bleu_mean = calculate_bleu_score(reference, candidate)
   chrf_mean = calculate_chrf_score(reference, candidate)
-  ter_mean = calculate_chrf_score(reference, candidate)
+  ter_mean = calculate_ter_score(reference, candidate)
   #meteor_mean = calculate_meteor_score(reference, candidate)
   
   results = {"BLEU": bleu_mean, "CHRF": chrf_mean, "TER": ter_mean, }
